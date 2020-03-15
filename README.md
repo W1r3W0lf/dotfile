@@ -1,2 +1,2 @@
 # dotfile
-My configuration files for POSIX OSs
+My configuration files for POSIX systems.
