@@ -3,6 +3,8 @@ call plug#begin('~/.vim/plugged')
 " Files
 Plug 'scrooloose/nerdtree'
 
+Plug 'majutsushi/tagbar'
+
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
@@ -11,11 +13,19 @@ Plug 'airblade/vim-gitgutter'
 
 " Spell Check
 Plug 'reedes/vim-lexical'
+set nocompatible
+filetype plugin on
+
+augroup lexical
+	autocmd!
+	autocmd FileType markdown,mkd call lexical#init()
+	autocmd FileType textile call lexical#init()
+	autocmd FileType text call lexical#init()
+augroup END
 
 "Plug 'vim-syntastic/syntastic'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdcommenter'
-filetype plugin on
 Plug 'jiangmiao/auto-pairs'
 Plug 'lambdalisue/vim-manpager'
 
@@ -29,6 +39,7 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
+
 Plug 'dense-analysis/ale'
 
 "Go stuff
@@ -60,7 +71,8 @@ let g:rainbow_conf = {
 
 
 " (Optional) Multi-entry selection UI.
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
 
 "Build
 Plug 'vhdirk/vim-cmake'
@@ -101,13 +113,12 @@ let g:airline#extensions#bufferline#enabled = 1
 "let g:airline_right_sep = ''
 
 " key mappings
-nmap z : NERDTreeToggle<cr>
+"nmap z : NERDTreeToggle<cr>
 
-" Disable F1 help 
-map <F1> <nop>
+map <F1> : NERDTreeToggle<cr>
 imap <F1> <nop>
 
-let mapleader = '<F1>'
+map <F2> :TagbarToggle<CR>
 
 nnoremap <C-Tab> :bn<CR>
 nnoremap <C-S-Tab> :bp<CR>

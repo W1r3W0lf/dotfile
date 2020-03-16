@@ -9,7 +9,7 @@ window:
 colors:
 
   primary:
-    background: '#132029'
+    background: '#132027'
     forground:  '#AAAAAA'
 
   normal:
